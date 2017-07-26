@@ -18,7 +18,6 @@ tmp
 # YARD artifacts
 .yardoc
 _yardoc
-doc/
 
 # Vim
 *.swp
@@ -45,7 +44,6 @@ log/
 *.log
 vendor/
 sensu.komodoproject
-doc/**
 
 # direnv & rbenv
 /.envrc

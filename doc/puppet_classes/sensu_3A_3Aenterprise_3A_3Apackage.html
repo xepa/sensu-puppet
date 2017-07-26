@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: sensu::enterprise::package
+  
+    &mdash; Documentation by YARD 0.9.9
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::sensu::enterprise::package";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">sensu::enterprise::package</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: sensu::enterprise::package</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/enterprise/package.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>= Class: sensu::package</p>
+
+<p>Installs the Sensu packages</p>
+
+<p>== Parameters</p>
+
+<p>[<em>deregister_handler</em>]
+  String. The handler to use when deregistering a client on stop.
+  Default: $::sensu::deregister_handler</p>
+
+<p>[<em>deregister_on_stop</em>]
+  Boolean. Whether the sensu client should deregister from the API on service stop
+  Default: $::sensu::deregister_on_stop</p>
+
+<p>[<em>gem_path</em>]
+  String.  Paths to add to GEM_PATH if we need to look for different dirs.
+  Default: $::sensu::gem_path</p>
+
+<p>[<em>init_stop_max_wait</em>]
+  Integer.  Number of seconds to wait for the init stop script to run
+  Default: $::sensu::init_stop_max_wait</p>
+
+<p>[<em>log_dir</em>]
+  String.  Sensu log directory to be used
+  Default: $::sensu::log_dir
+  Valid values: Any valid log directory path, accessible by the sensu user</p>
+
+<p>[<em>log_level</em>]
+  String.  Sensu log level to be used
+  Default: $::sensu::log_level
+  Valid values: debug, info, warn, error, fatal</p>
+
+<p>[<em>path</em>]
+  String. Used to set PATH in /etc/default/sensu
+  Default: $::sensu::path</p>
+
+<p>[<em>rubyopt</em>]
+  String.  Ruby opts to be passed to the sensu services
+  Default: $::sensu::rubyopt</p>
+
+<p>[<em>use_embedded_ruby</em>]
+  Boolean.  If the embedded ruby should be used, e.g. to install the
+  sensu-plugin gem.  This value is overridden by a defined
+  sensu_plugin_provider.  Note, the embedded ruby should always be used to
+  provide full compatibility.  Using other ruby runtimes, e.g. the system
+  ruby, is not recommended.
+  Default: $::sensu::use_embedded_ruby
+  Valid values: true, false</p>
+
+<p>[<em>heap_size</em>]
+  String. Value of the HEAP_SIZE environment variable.
+  Default: $::sensu::heap_size</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>deregister_handler</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::deregister_handler</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>deregister_on_stop</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::deregister_on_stop</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gem_path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::gem_path</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>init_stop_max_wait</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::init_stop_max_wait</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::log_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_level</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::log_level</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::path</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rubyopt</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::rubyopt</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_embedded_ruby</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::use_embedded_ruby</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>heap_size</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::heap_size</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/enterprise/package.pp', line 54</span>
+
+class sensu::enterprise::package (
+  $deregister_handler = $::sensu::deregister_handler,
+  $deregister_on_stop = $::sensu::deregister_on_stop,
+  $gem_path           = $::sensu::gem_path,
+  $init_stop_max_wait = $::sensu::init_stop_max_wait,
+  $log_dir            = $::sensu::log_dir,
+  $log_level          = $::sensu::log_level,
+  $path               = $::sensu::path,
+  $rubyopt            = $::sensu::rubyopt,
+  $use_embedded_ruby  = $::sensu::use_embedded_ruby,
+  $heap_size          = $::sensu::heap_size,
+  ){
+
+  if $caller_module_name != $module_name {
+    fail(&quot;Use of private class ${name} by ${caller_module_name}&quot;)
+  }
+
+  if $::sensu::enterprise {
+
+    package { &#39;sensu-enterprise&#39;:
+      ensure  =&gt; $::sensu::enterprise_version,
+    }
+
+    file { &#39;/etc/default/sensu-enterprise&#39;:
+      ensure  =&gt; file,
+      content =&gt; template(&quot;${module_name}/sensu.erb&quot;),
+      owner   =&gt; &#39;0&#39;,
+      group   =&gt; &#39;0&#39;,
+      mode    =&gt; &#39;0444&#39;,
+      require =&gt; Package[&#39;sensu-enterprise&#39;],
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+  Generated on Wed Jul 26 19:11:19 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.9 (ruby-2.1.9).
+</div>
+
+    </div>
+  </body>
+</html>
