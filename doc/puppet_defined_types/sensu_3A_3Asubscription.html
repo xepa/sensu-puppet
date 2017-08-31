@@ -69,12 +69,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Manages Sensu subscriptions
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>[<em>custom</em>]
-  Hash.  Custom client variables
-  Default: {}</p>
+    <p>This define manages Sensu subscriptions</p>
 
   </div>
 </div>
@@ -93,6 +94,10 @@
         <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Whether the check should be present or not</p>
+</div>
+      
     </li>
   
     <li>
@@ -106,6 +111,10 @@
         <em class="default">(defaults to: <tt>{}</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Custom client variables</p>
+</div>
+      
     </li>
   
 </ul>
@@ -118,6 +127,13 @@
         <pre class="lines">
 
 
+9
+10
+11
+12
+13
+14
+15
 16
 17
 18
@@ -132,17 +148,10 @@
 27
 28
 29
-30
-31
-32
-33
-34
-35
-36
-37</pre>
+30</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/subscription.pp', line 16</span>
+        <pre class="code"><span class="info file"># File 'manifests/subscription.pp', line 9</span>
 
 define sensu::subscription (
   Enum[&#39;present&#39;,&#39;absent&#39;] $ensure = &#39;present&#39;,
@@ -163,7 +172,7 @@ define sensu::subscription (
     ensure    =&gt; $ensure,
     base_path =&gt; $::sensu::conf_dir,
     custom    =&gt; $custom,
-    notify    =&gt; Class[&#39;sensu::client::service&#39;],
+    notify    =&gt; $::sensu::client_service,
   }
 }</pre>
       </td>
@@ -173,7 +182,7 @@ define sensu::subscription (
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

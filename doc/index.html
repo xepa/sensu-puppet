@@ -62,13 +62,15 @@
 <p>Installs and manages the open source monitoring framework <a href="http://sensuapp.org">Sensu</a>.
 <a href="https://forge.puppetlabs.com/sensu/sensu"><img src="http://img.shields.io/puppetforge/v/sensu/sensu.svg" alt="Puppet Forge"></a></p>
 
+<p>Please note, that this is a <strong>Partner Supported</strong> module, which means that technical customer support for this module is solely provided by Sensu. Puppet does not provide support for any <strong>Partner Supported</strong> modules. Technical support for this module is provided by Sensu at <a href="https://sensuapp.org/support">https://sensuapp.org/support</a>.</p>
+
 <h2>Tested with Travis CI</h2>
 
 <p><a href="https://travis-ci.org/sensu/sensu-puppet"><img src="https://travis-ci.org/sensu/sensu-puppet.png" alt="Build Status"></a></p>
 
 <h2>Documented with Puppet Strings</h2>
 
-<p><a href="http://sensu.github.io/sensu-puppet/">Puppet Strings documentation</a></p>
+<p><a href="http://sensu.github.io/sensu-puppet/doc/">Puppet Strings documentation</a></p>
 
 <h2>Compatibility - supported sensu versions</h2>
 
@@ -119,14 +121,23 @@ Sensu-Puppet module.</p>
 
 <h3>Dependencies</h3>
 
+<p>See <code>metadata.json</code> for details.</p>
+
 <ul>
-<li>puppetlabs/apt</li>
 <li>puppetlabs/stdlib</li>
 <li>lwf/puppet-remote_file</li>
-<li>puppetlabs/powershell</li>
 </ul>
 
-<p>See <code>metadata.json</code> for details.</p>
+<p>Soft dependencies if you use the corresponding technologies.</p>
+
+<ul>
+<li><a href="https://github.com/puppetlabs/puppetlabs-apt">puppetlabs/apt</a></li>
+<li><a href="https://github.com/puppetlabs/puppetlabs-powershell">puppetlabs/powershell</a></li>
+<li><a href="https://github.com/voxpupuli/puppet-rabbitmq">voxpupuli/rabbitmq</a></li>
+</ul>
+
+<p>Note: While this module works with other versions of puppetlabs/apt, we
+test against and support what is listed in the <code>.fixtures.yml</code> file.</p>
 
 <p>Pluginsync should be enabled. Also, you will need the Ruby JSON library
 or gem on all your nodes.</p>
@@ -797,7 +808,7 @@ example:</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

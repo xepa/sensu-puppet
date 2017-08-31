@@ -71,12 +71,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Adds the Sensu YUM repo support
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Class: sensu::repo::yum</p>
-
-<p>Adds the Sensu YUM repo support</p>
+    <p>Adds the Sensu YUM repo support</p>
 
   </div>
 </div>
@@ -141,20 +142,12 @@
 53
 54
 55
-56
-57
-58
-59
-60</pre>
+56</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/repo/yum.pp', line 5</span>
 
 class sensu::repo::yum {
-
-  if $caller_module_name != $module_name {
-    fail(&quot;Use of private class ${name} by ${caller_module_name}&quot;)
-  }
 
   if $::sensu::install_repo  {
     if $::sensu::repo_source {
@@ -213,7 +206,7 @@ class sensu::repo::yum {
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

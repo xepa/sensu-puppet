@@ -69,35 +69,18 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Manages contact routing
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Define: sensu::routing</p>
-
-<p>Manage <a href="https://sensuapp.org/docs/latest/enterprise/contact-routing.html">Contact
+    <p>Manage <a href="https://sensuapp.org/docs/latest/enterprise/contact-routing.html">Contact
 Routing</a>
 configuration with Sensu Enterprise.</p>
 
 <p>Note:  If the <code>sensu::purge_config</code> class parameter is <code>true</code>, unmanaged
 sensu::contact resources located in /etc/sensu/conf.d/contacts will be purged.</p>
-
-<p>== Parameters</p>
-
-<p>[<em>ensure</em>]
-  String. Whether the check should be present or not
-  Default: present
-  Valid values: present, absent</p>
-
-<p>[<em>base_path</em>]
-  String.  Where to place the contact JSON configuration file.  Defaults to
-  <code>undef</code> which defers to the behavior of the underlying sensu_contact type.
-  Default: undef</p>
-
-<p>[<em>config</em>]
-  Hash. The configuration data for the contact.  This is an arbitrary hash to
-  accommodate the various communication channels. For example, <code>{ &quot;email&quot;: {
-  &quot;to&quot;: &quot;support@example.com&quot; } }</code>.
-  Default: {}</p>
 
   </div>
 </div>
@@ -116,6 +99,10 @@ sensu::contact resources located in /etc/sensu/conf.d/contacts will be purged.</
         <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Whether the check should be present or not</p>
+</div>
+      
     </li>
   
     <li>
@@ -128,6 +115,11 @@ sensu::contact resources located in /etc/sensu/conf.d/contacts will be purged.</
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Where to place the contact JSON configuration file.  Defaults to
+<code>undef</code> which defers to the behavior of the underlying sensu_contact type.</p>
+</div>
       
     </li>
   
@@ -142,6 +134,12 @@ sensu::contact resources located in /etc/sensu/conf.d/contacts will be purged.</
         <em class="default">(defaults to: <tt>{}</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The configuration data for the contact.  This is an arbitrary hash to
+accommodate the various communication channels. For example, <code>{ &quot;email&quot;: {
+&quot;to&quot;: &quot;support@example.com&quot; } }</code>.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -154,6 +152,14 @@ sensu::contact resources located in /etc/sensu/conf.d/contacts will be purged.</
         <pre class="lines">
 
 
+19
+20
+21
+22
+23
+24
+25
+26
 27
 28
 29
@@ -172,18 +178,10 @@ sensu::contact resources located in /etc/sensu/conf.d/contacts will be purged.</
 42
 43
 44
-45
-46
-47
-48
-49
-50
-51
-52
-53</pre>
+45</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/contact.pp', line 27</span>
+        <pre class="code"><span class="info file"># File 'manifests/contact.pp', line 19</span>
 
 define sensu::contact(
   Enum[&#39;present&#39;,&#39;absent&#39;] $ensure = &#39;present&#39;,
@@ -219,7 +217,7 @@ define sensu::contact(
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

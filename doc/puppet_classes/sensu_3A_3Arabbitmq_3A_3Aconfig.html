@@ -71,12 +71,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Sets the Sensu rabbitmq config
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Class: sensu::rabbitmq::config</p>
-
-<p>Sets the Sensu rabbitmq config</p>
+    <p>Sets the Sensu rabbitmq config</p>
 
   </div>
 </div>
@@ -221,20 +222,12 @@
 133
 134
 135
-136
-137
-138
-139
-140</pre>
+136</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/rabbitmq/config.pp', line 5</span>
 
 class sensu::rabbitmq::config {
-
-  if $caller_module_name != $module_name {
-    fail(&quot;Use of private class ${name} by ${caller_module_name}&quot;)
-  }
 
   if $::sensu::_purge_config and !$::sensu::server and !$::sensu::client and !$::sensu::enterprise and $::sensu::transport_type != &#39;rabbitmq&#39; {
     $ensure = &#39;absent&#39;
@@ -346,7 +339,7 @@ class sensu::rabbitmq::config {
   $cert_chain = $has_cluster ? { false =&gt; $ssl_cert_chain, true =&gt; undef, }
   $private_key = $has_cluster ? { false =&gt; $ssl_private_key, true =&gt; undef, }
   $prefetch = $has_cluster ? { false =&gt; $::sensu::rabbitmq_prefetch, true =&gt; undef, }
-  $base_path = $has_cluster ? { false =&gt; $::sensu::conf_dir, true =&gt; undef, }
+  $base_path = $::sensu::conf_dir
   $cluster = $has_cluster ? { true =&gt; $::sensu::rabbitmq_cluster, false =&gt; undef, }
   $heartbeat = $has_cluster ? { false =&gt; $::sensu::rabbitmq_heartbeat, true =&gt; undef, }
 
@@ -373,7 +366,7 @@ class sensu::rabbitmq::config {
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

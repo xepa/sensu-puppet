@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Puppet Class: sensu::server::service
+  Puppet Class: sensu::api
   
     &mdash; Documentation by YARD 0.9.9
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "puppet_classes::sensu::server::service";
+  pathId = "puppet_classes::sensu::api";
   relpath = '../';
 </script>
 
@@ -39,7 +39,7 @@
     <a href="../_index.html">Index (s)</a> &raquo;
     <span class='title'><span class='object_link'>Puppet Classes</span></span>
      &raquo; 
-    <span class="title">sensu::server::service</span>
+    <span class="title">sensu::api</span>
   
 </div>
 
@@ -59,25 +59,30 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Puppet Class: sensu::server::service</h1>
+      <div id="content"><h1>Puppet Class: sensu::api</h1>
 <div class="box_info">
   
   
   <dl>
     <dt>Defined in:</dt>
     <dd>
-      manifests/server/service.pp
+      manifests/api.pp
     </dd>
   </dl>
 </div>
 
-  <h2>Summary</h2>
-  Manages the Sensu server service
-
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>Manages the Sensu server service</p>
+    <p>= Class: sensu::api</p>
+
+<p>Manages the Sensu api</p>
+
+<p>== Parameters</p>
+
+<p>[<em>hasrestart</em>]
+  Boolean. Value of hasrestart attribute for this service.
+  Default: true</p>
 
   </div>
 </div>
@@ -96,10 +101,6 @@
         <em class="default">(defaults to: <tt>$::sensu::hasrestart</tt>)</em>
       
       
-        &mdash;
-        <div class='inline'><p>Value of hasrestart attribute for this service.</p>
-</div>
-      
     </li>
   
 </ul>
@@ -112,10 +113,6 @@
         <pre class="lines">
 
 
-7
-8
-9
-10
 11
 12
 13
@@ -143,32 +140,62 @@
 35
 36
 37
-38</pre>
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/server/service.pp', line 7</span>
+        <pre class="code"><span class="info file"># File 'manifests/api.pp', line 11</span>
 
-class sensu::server::service (
+class sensu::api (
   Boolean $hasrestart = $::sensu::hasrestart,
 ) {
 
   if $::sensu::manage_services {
 
-    case $::sensu::server {
+    case $::sensu::api {
       true: {
-        $ensure = &#39;running&#39;
-        $enable = true
+        $service_ensure = &#39;running&#39;
+        $service_enable = true
       }
       default: {
-        $ensure = &#39;stopped&#39;
-        $enable = false
+        $service_ensure = &#39;stopped&#39;
+        $service_enable = false
       }
     }
 
     if $::osfamily != &#39;windows&#39; {
-      service { &#39;sensu-server&#39;:
-        ensure     =&gt; $ensure,
-        enable     =&gt; $enable,
+      service { &#39;sensu-api&#39;:
+        ensure     =&gt; $service_ensure,
+        enable     =&gt; $service_enable,
         hasrestart =&gt; $hasrestart,
         subscribe  =&gt; [
           Class[&#39;sensu::package&#39;],
@@ -178,6 +205,32 @@ class sensu::server::service (
         ],
       }
     }
+  }
+
+  if $::sensu::_purge_config and !$::sensu::server and !$::sensu::api and !$::sensu::enterprise {
+    $file_ensure = &#39;absent&#39;
+  } else {
+    $file_ensure = &#39;present&#39;
+  }
+
+  file { &quot;${sensu::etc_dir}/conf.d/api.json&quot;:
+    ensure =&gt; $file_ensure,
+    owner  =&gt; $::sensu::user,
+    group  =&gt; $::sensu::group,
+    mode   =&gt; $::sensu::file_mode,
+  }
+
+  sensu_api_config { $::fqdn:
+    ensure                =&gt; $file_ensure,
+    base_path             =&gt; &quot;${sensu::etc_dir}/conf.d&quot;,
+    bind                  =&gt; $::sensu::api_bind,
+    host                  =&gt; $::sensu::api_host,
+    port                  =&gt; $::sensu::api_port,
+    user                  =&gt; $::sensu::api_user,
+    password              =&gt; $::sensu::api_password,
+    ssl_port              =&gt; $::sensu::api_ssl_port,
+    ssl_keystore_file     =&gt; $::sensu::api_ssl_keystore_file,
+    ssl_keystore_password =&gt; $::sensu::api_ssl_keystore_password,
   }
 }</pre>
       </td>

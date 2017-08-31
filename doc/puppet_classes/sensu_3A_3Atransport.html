@@ -71,12 +71,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Configures Sensu transport
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>Class: sensu::transport</p>
-
-<p>Configure Sensu Transport</p>
+    <p>Configure Sensu Transport</p>
 
   </div>
 </div>
@@ -113,20 +114,12 @@
 25
 26
 27
-28
-29
-30
-31
-32</pre>
+28</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/transport.pp', line 5</span>
 
 class sensu::transport {
-
-  if $caller_module_name != $module_name {
-    fail(&quot;Use of private function ${name} by ${caller_module_name}&quot;)
-  }
 
   if $::sensu::transport_type != &#39;redis&#39; {
     $ensure = &#39;absent&#39;
@@ -157,7 +150,7 @@ class sensu::transport {
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

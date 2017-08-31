@@ -69,59 +69,38 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Writes arbitrary hash data to a config file.
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Define: sensu::write_json</p>
-
-<p>Writes arbitrary hash data to a config file. Note: you must manually notify
+    <p>Writes arbitrary hash data to a config file. Note: you must manually notify
 any Sensu services to restart them when using this defined resource type.</p>
 
-<p>Example:</p>
-
-<p>sensu::write_json { &#39;/etc/sensu/conf.d/check.json&#39;:
-   content =&gt; =&gt; {&quot;key&quot; =&gt; &quot;value&quot;},
-   notify  =&gt; [
-     Service[&#39;sensu-client&#39;],
-     Service[&#39;sensu-server&#39;],
-   ],
- }</p>
-
-<p>== Parameters</p>
-
-<p>[<em>name</em>]
-  String. The config file target path.</p>
-
-<p>[<em>ensure</em>]
-  String. Whether the file should be present or not.
-  Default: present
-  Valid values: present, absent</p>
-
-<p>[<em>owner</em>]
-  String. The file owner.
-  Default: $::sensu::user</p>
-
-<p>[<em>group</em>]
-  String. The file group.
-  Default: $::sensu::group</p>
-
-<p>[<em>mode</em>]
-  String. The file mode.
-  Default: 0755</p>
-
-<p>[<em>pretty</em>]
-  Boolean. Write the json with &quot;pretty&quot; indenting &amp; formating.
-  Default: true</p>
-
-<p>[<em>content</em>]
-  Hash. The hash content that will be converted to json and written into
-        the target config file.
-  Default: {}</p>
+<p>[<em>notify_list</em>]
+  Array. A listing of resources to notify upon changes to the target JSON
+         file.
+  Default: []</p>
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code>sensu::write_json { &#39;/etc/sensu/conf.d/check.json&#39;:
+  content =&gt; {&quot;config&quot; =&gt; {&quot;key&quot; =&gt; &quot;value&quot;}},
+  notify  =&gt; [
+    Service[&#39;sensu-client&#39;],
+    Service[&#39;sensu-server&#39;],
+  ],
+}</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
 <ul class="param">
   
     <li>
@@ -134,6 +113,10 @@ any Sensu services to restart them when using this defined resource type.</p>
       
         <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Whether the file should be present or not.</p>
+</div>
       
     </li>
   
@@ -148,6 +131,10 @@ any Sensu services to restart them when using this defined resource type.</p>
         <em class="default">(defaults to: <tt>&#39;sensu&#39;</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The file owner.</p>
+</div>
+      
     </li>
   
     <li>
@@ -160,6 +147,10 @@ any Sensu services to restart them when using this defined resource type.</p>
       
         <em class="default">(defaults to: <tt>&#39;sensu&#39;</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The file group.</p>
+</div>
       
     </li>
   
@@ -174,6 +165,10 @@ any Sensu services to restart them when using this defined resource type.</p>
         <em class="default">(defaults to: <tt>&#39;0755&#39;</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The file mode.</p>
+</div>
+      
     </li>
   
     <li>
@@ -186,6 +181,10 @@ any Sensu services to restart them when using this defined resource type.</p>
       
         <em class="default">(defaults to: <tt>true</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Write the json with &quot;pretty&quot; indenting &amp; formating.</p>
+</div>
       
     </li>
   
@@ -200,6 +199,24 @@ any Sensu services to restart them when using this defined resource type.</p>
         <em class="default">(defaults to: <tt>{}</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The hash content that will be converted to json
+and written into the target config file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>notify_list</span>
+      
+      
+        <span class='type'>(<tt>Array[Variant[Data,Type]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
     </li>
   
 </ul>
@@ -212,6 +229,21 @@ any Sensu services to restart them when using this defined resource type.</p>
         <pre class="lines">
 
 
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
 47
 48
 49
@@ -227,23 +259,10 @@ any Sensu services to restart them when using this defined resource type.</p>
 59
 60
 61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75</pre>
+62</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/write_json.pp', line 47</span>
+        <pre class="code"><span class="info file"># File 'manifests/write_json.pp', line 32</span>
 
 define sensu::write_json (
   Enum[&#39;present&#39;, &#39;absent&#39;] $ensure = &#39;present&#39;,
@@ -252,6 +271,7 @@ define sensu::write_json (
   String                    $mode = &#39;0755&#39;,
   Boolean                   $pretty = true,
   Hash                      $content = {},
+  Array[Variant[Data,Type]] $notify_list = [],
 ) {
 
   # ensure we have a properly formatted file path for our target OS
@@ -272,6 +292,7 @@ define sensu::write_json (
     group   =&gt; $group,
     mode    =&gt; $mode,
     content =&gt; sensu_sorted_json($content, $pretty),
+    notify  =&gt; $notify_list,
   }
 }</pre>
       </td>
@@ -281,7 +302,7 @@ define sensu::write_json (
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>
