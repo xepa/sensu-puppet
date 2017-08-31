@@ -69,10 +69,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Verifies if install_dir exists without duplicate declarations
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>This is to verify the install_dir exists without duplicate declarations</p>
+    <p>This define verifies if install_dir exists without duplicate declarations</p>
 
   </div>
 </div>
@@ -89,6 +92,11 @@
       
       
       
+        &mdash;
+        <div class='inline'><p>Value of the parameter force of file resource for the
+managed directory.</p>
+</div>
+      
     </li>
   
     <li>
@@ -100,6 +108,11 @@
       
       
       
+        &mdash;
+        <div class='inline'><p>Value of the parameter purge of file resource for the
+managed directory.</p>
+</div>
+      
     </li>
   
     <li>
@@ -110,6 +123,11 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>Value of the parameter recurse of file resource for the
+managed directory.</p>
+</div>
       
     </li>
   
@@ -124,6 +142,10 @@
         <em class="default">(defaults to: <tt>$name</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Path of the directory to create. If not defined the $title is used</p>
+</div>
+      
     </li>
   
 </ul>
@@ -136,17 +158,6 @@
         <pre class="lines">
 
 
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
 13
 14
 15
@@ -154,10 +165,21 @@
 17
 18
 19
-20</pre>
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/plugins_dir.pp', line 2</span>
+        <pre class="code"><span class="info file"># File 'manifests/plugins_dir.pp', line 13</span>
 
 define sensu::plugins_dir (
   Boolean $force,
@@ -185,7 +207,7 @@ define sensu::plugins_dir (
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

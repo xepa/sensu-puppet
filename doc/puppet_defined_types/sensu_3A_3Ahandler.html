@@ -69,82 +69,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  sensu::handler
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Define: sensu::handler</p>
-
-<p>Defines Sensu handlers</p>
-
-<p>== Parameters</p>
-
-<p>[<em>ensure</em>]
-  String. Whether the check should be present or not
-  Default: present
-  Valid values: present, absent</p>
-
-<p>[<em>type</em>]
-  String.  Type of handler
-  Default: pipe
-  Valid values: pipe, tcp, udp, amqp, transport, set</p>
-
-<p>[<em>command</em>]
-  String.  Command to run as the handler when type=pipe
-  Default: undef</p>
-
-<p>[<em>handlers</em>]
-  Array of Strings.  Handlers to use when type=set
-  Default: undef</p>
-
-<p>[<em>severities</em>]
-  Array of Strings.  Severities handler is valid for
-  Default: [&#39;ok&#39;, &#39;warning&#39;, &#39;critical&#39;, &#39;unknown&#39;]
-  Valid values: ok, warning, critical, unknown</p>
-
-<p>[<em>exchange</em>]
-  Hash.  Exchange information used when type=amqp
-  Keys: host, port
-  Default: undef</p>
-
-<p>[<em>pipe</em>]
-  Hash.  Pipe information used when type=transport
-  Keys: name, type, options
-  Default: undef</p>
-
-<p>[<em>socket</em>]
-  Hash.  Socket information when type=tcp or type=udp
-  Keys: host, port
-  Default: undef</p>
-
-<p>[<em>filters</em>]
-  Array.  Filter command to apply
-  Default: []</p>
-
-<p>[<em>source</em>]
-  String.  Source of the puppet handler
-  Default: undef</p>
-
-<p>[<em>install_path</em>]
-  String.  Path to install the handler
-  Default: /etc/sensu/handlers</p>
-
-<p>[<em>config</em>]
-  Hash.  Handler specific config
-  Default: undef</p>
-
-<p>[<em>timeout</em>]
-  Integer.  Handler timeout configuration
-  Default: undef</p>
-
-<p>[<em>handle_flapping</em>]
-  Boolean.  If events in the flapping state should be handled.
-  Default: false.
-  Valid values: true, false</p>
-
-<p>[<em>handle_silenced</em>]
-  Boolean.  If events in the silenced state should be handled.
-  Default: false.
-  Valid values: true, false</p>
+    <p>Defines Sensu handlers</p>
 
   </div>
 </div>
@@ -163,6 +94,10 @@
         <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Whether the check should be present or not</p>
+</div>
+      
     </li>
   
     <li>
@@ -175,6 +110,10 @@
       
         <em class="default">(defaults to: <tt>&#39;pipe&#39;</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Type of handler</p>
+</div>
       
     </li>
   
@@ -189,6 +128,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Command to run as the handler when type=pipe</p>
+</div>
+      
     </li>
   
     <li>
@@ -201,6 +144,10 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Handlers to use when type=set</p>
+</div>
       
     </li>
   
@@ -215,6 +162,10 @@
         <em class="default">(defaults to: <tt>[&#39;ok&#39;, &#39;warning&#39;, &#39;critical&#39;, &#39;unknown&#39;]</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Severities handler is valid for</p>
+</div>
+      
     </li>
   
     <li>
@@ -227,6 +178,11 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Exchange information used when type=amqp
+Keys: host, port</p>
+</div>
       
     </li>
   
@@ -241,18 +197,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
-    </li>
-  
-    <li>
-      
-        <span class='name'>mutator</span>
-      
-      
-        <span class='type'>(<tt>Any</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>undef</tt>)</em>
-      
+        &mdash;
+        <div class='inline'><p>Pipe information used when type=transport
+Keys: name, type, options</p>
+</div>
       
     </li>
   
@@ -267,6 +215,11 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Socket information when type=tcp or type=udp
+Keys: host, port</p>
+</div>
+      
     </li>
   
     <li>
@@ -279,6 +232,10 @@
       
         <em class="default">(defaults to: <tt>[]</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Filter commands to apply</p>
+</div>
       
     </li>
   
@@ -293,6 +250,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Source of the puppet handler</p>
+</div>
+      
     </li>
   
     <li>
@@ -305,6 +266,10 @@
       
         <em class="default">(defaults to: <tt>&#39;/etc/sensu/handlers&#39;</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Path to install the handler</p>
+</div>
       
     </li>
   
@@ -319,18 +284,9 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
-    </li>
-  
-    <li>
-      
-        <span class='name'>subdue</span>
-      
-      
-        <span class='type'>(<tt>Any</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>undef</tt>)</em>
-      
+        &mdash;
+        <div class='inline'><p>Handler specific config</p>
+</div>
       
     </li>
   
@@ -345,6 +301,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Handler timeout configuration</p>
+</div>
+      
     </li>
   
     <li>
@@ -357,6 +317,10 @@
       
         <em class="default">(defaults to: <tt>false</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>If events in the flapping state should be handled.</p>
+</div>
       
     </li>
   
@@ -371,6 +335,46 @@
         <em class="default">(defaults to: <tt>false</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>If events in the silenced state should be handled.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mutator</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The handle mutator.
+Valid values: Any kind of data which can be added to the handler mutator.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subdue</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The handle subdue.
+Valid values: Any kind of data which can be added to the handler subdue.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -383,6 +387,37 @@
         <pre class="lines">
 
 
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
 75
 76
 77
@@ -453,41 +488,10 @@
 142
 143
 144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176</pre>
+145</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/handler.pp', line 75</span>
+        <pre class="code"><span class="info file"># File 'manifests/handler.pp', line 44</span>
 
 define sensu::handler(
   Enum[&#39;present&#39;,&#39;absent&#39;] $ensure = &#39;present&#39;,
@@ -598,7 +602,7 @@ define sensu::handler(
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

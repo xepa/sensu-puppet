@@ -71,71 +71,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Installs Sensu packages
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Class: sensu::package</p>
-
-<p>Installs the Sensu packages</p>
-
-<p>== Parameters</p>
-
-<p>[<em>conf_dir</em>]
-  String. The default configuration directory.
-  Default: $::sensu::conf_dir</p>
-
-<p>[<em>confd_dir</em>]
-  String, Array of strings. Additional directories to load configuration
-  snippets from.
-  Default: $::sensu::confd_dir</p>
-
-<p>[<em>heap_size</em>]
-  String. Value of the HEAP_SIZE environment variable.
-  Note: This has no effect on sensu-core.
-  Default: $::sensu::heap_size</p>
-
-<p>[<em>deregister_handler</em>]
-  String. The handler to use when deregistering a client on stop.
-  Default: $::sensu::deregister_handler</p>
-
-<p>[<em>deregister_on_stop</em>]
-  Boolean. Whether the sensu client should deregister from the API on service stop
-  Default: $::sensu::deregister_on_stop</p>
-
-<p>[<em>gem_path</em>]
-  String.  Paths to add to GEM_PATH if we need to look for different dirs.
-  Default: $::sensu::gem_path</p>
-
-<p>[<em>init_stop_max_wait</em>]
-  Integer.  Number of seconds to wait for the init stop script to run
-  Default: $::sensu::init_stop_max_wait</p>
-
-<p>[<em>log_dir</em>]
-  String.  Sensu log directory to be used
-  Default: $::sensu::log_dir
-  Valid values: Any valid log directory path, accessible by the sensu user</p>
-
-<p>[<em>log_level</em>]
-  String.  Sensu log level to be used
-  Default: $::sensu::log_level
-  Valid values: debug, info, warn, error, fatal</p>
-
-<p>[<em>path</em>]
-  String. Used to set PATH in /etc/default/sensu
-  Default: $::sensu::path</p>
-
-<p>[<em>rubyopt</em>]
-  String.  Ruby opts to be passed to the sensu services
-  Default: $::sensu::rubyopt</p>
-
-<p>[<em>use_embedded_ruby</em>]
-  Boolean.  If the embedded ruby should be used, e.g. to install the
-  sensu-plugin gem.  This value is overridden by a defined
-  sensu_plugin_provider.  Note, the embedded ruby should always be used to
-  provide full compatibility.  Using other ruby runtimes, e.g. the system
-  ruby, is not recommended.
-  Default: $::sensu::use_embedded_ruby
-  Valid values: true, false</p>
+    <p>Installs the Sensu packages</p>
 
   </div>
 </div>
@@ -148,11 +90,15 @@
         <span class='name'>conf_dir</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::conf_dir</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The default configuration directory.</p>
+</div>
       
     </li>
   
@@ -161,11 +107,16 @@
         <span class='name'>confd_dir</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Variant[String,Array,Undef]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::confd_dir</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Additional directories to load configuration
+snippets from.</p>
+</div>
       
     </li>
   
@@ -174,11 +125,16 @@
         <span class='name'>heap_size</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Variant[Undef,Integer,Pattern[/^(\d+)/]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::heap_size</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Value of the HEAP_SIZE environment variable.
+Note: This has no effect on sensu-core.</p>
+</div>
       
     </li>
   
@@ -187,11 +143,15 @@
         <span class='name'>deregister_handler</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::deregister_handler</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The handler to use when deregistering a client on stop.</p>
+</div>
       
     </li>
   
@@ -200,11 +160,15 @@
         <span class='name'>deregister_on_stop</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::deregister_on_stop</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Whether the sensu client should deregister from the API on service stop</p>
+</div>
       
     </li>
   
@@ -213,11 +177,15 @@
         <span class='name'>gem_path</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::gem_path</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Paths to add to GEM_PATH if we need to look for different dirs.</p>
+</div>
       
     </li>
   
@@ -226,11 +194,15 @@
         <span class='name'>init_stop_max_wait</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Variant[Undef,Integer,Pattern[/^(\d+)$/]]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::init_stop_max_wait</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Number of seconds to wait for the init stop script to run</p>
+</div>
       
     </li>
   
@@ -239,11 +211,16 @@
         <span class='name'>log_dir</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::log_dir</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Sensu log directory to be used
+Valid values: Any valid log directory path, accessible by the sensu user</p>
+</div>
       
     </li>
   
@@ -252,11 +229,16 @@
         <span class='name'>log_level</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::log_level</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Sensu log level to be used
+Valid values: debug, info, warn, error, fatal</p>
+</div>
       
     </li>
   
@@ -265,11 +247,15 @@
         <span class='name'>path</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::path</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Used to set PATH in /etc/default/sensu</p>
+</div>
       
     </li>
   
@@ -278,11 +264,15 @@
         <span class='name'>rubyopt</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::rubyopt</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Ruby opts to be passed to the sensu services</p>
+</div>
       
     </li>
   
@@ -291,11 +281,19 @@
         <span class='name'>use_embedded_ruby</span>
       
       
-        <span class='type'>(<tt>Any</tt>)</span>
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>$::sensu::use_embedded_ruby</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>If the embedded ruby should be used, e.g. to install the
+sensu-plugin gem.  This value is overridden by a defined
+sensu_plugin_provider.  Note, the embedded ruby should always be used to
+provide full compatibility.  Using other ruby runtimes, e.g. the system
+ruby, is not recommended.</p>
+</div>
       
     </li>
   
@@ -309,6 +307,33 @@
         <pre class="lines">
 
 
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
 64
 65
 66
@@ -544,58 +569,25 @@
 296
 297
 298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328</pre>
+299</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/package.pp', line 64</span>
+        <pre class="code"><span class="info file"># File 'manifests/package.pp', line 37</span>
 
 class sensu::package (
-  $conf_dir           = $::sensu::conf_dir,
-  $confd_dir          = $::sensu::confd_dir,
-  $heap_size          = $::sensu::heap_size,
-  $deregister_handler = $::sensu::deregister_handler,
-  $deregister_on_stop = $::sensu::deregister_on_stop,
-  $gem_path           = $::sensu::gem_path,
-  $init_stop_max_wait = $::sensu::init_stop_max_wait,
-  $log_dir            = $::sensu::log_dir,
-  $log_level          = $::sensu::log_level,
-  $path               = $::sensu::path,
-  $rubyopt            = $::sensu::rubyopt,
-  $use_embedded_ruby  = $::sensu::use_embedded_ruby,
+  Optional[String] $conf_dir            = $::sensu::conf_dir,
+  Variant[String,Array,Undef] $confd_dir = $::sensu::confd_dir,
+  Variant[Undef,Integer,Pattern[/^(\d+)/]] $heap_size = $::sensu::heap_size,
+  Optional[String] $deregister_handler  = $::sensu::deregister_handler,
+  Optional[Boolean] $deregister_on_stop = $::sensu::deregister_on_stop,
+  Optional[String] $gem_path            = $::sensu::gem_path,
+  Variant[Undef,Integer,Pattern[/^(\d+)$/]] $init_stop_max_wait = $::sensu::init_stop_max_wait,
+  Optional[String] $log_dir             = $::sensu::log_dir,
+  Optional[String] $log_level           = $::sensu::log_level,
+  Optional[String] $path                = $::sensu::path,
+  Optional[String] $rubyopt             = $::sensu::rubyopt,
+  Optional[Boolean] $use_embedded_ruby  = $::sensu::use_embedded_ruby,
 ) {
-
-  if $caller_module_name != $module_name {
-    fail(&quot;Use of private class ${name} by ${caller_module_name}&quot;)
-  }
 
   case $::osfamily {
 
@@ -799,13 +791,15 @@ class sensu::package (
     $spawn_template = &#39;&lt;%= require &quot;json&quot;; JSON.pretty_generate(@spawn_config) + $/ %&gt;&#39;
     $spawn_ensure = &#39;file&#39;
     $spawn_content = inline_template($spawn_template)
-    if $::sensu::client {
+    if $::sensu::client and $::sensu::manage_services {
       $spawn_notify = [
-        Class[&#39;sensu::client::service&#39;],
+        Service[&#39;sensu-client&#39;],
         Class[&#39;sensu::server::service&#39;],
       ]
-    } else {
+    } elsif $::sensu::manage_services {
       $spawn_notify = [ Class[&#39;sensu::server::service&#39;] ]
+    } else {
+      $spawn_notify = undef
     }
   } else {
     $spawn_ensure = undef
@@ -850,7 +844,7 @@ class sensu::package (
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

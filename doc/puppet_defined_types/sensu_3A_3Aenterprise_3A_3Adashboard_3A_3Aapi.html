@@ -69,15 +69,36 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Manages the Sensu Enterprise API configuration
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    
+    <p>Manages the Sensu Enterprise API configuration</p>
+
   </div>
 </div>
 <div class="tags">
   <p class="tag_title">Parameters:</p>
 <ul class="param">
+  
+    <li>
+      
+        <span class='name'>host</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The hostname or IP address of the Sensu API.
+This is used as the namevar for the underlying resource, so must be unique
+within the catalog.</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -89,6 +110,10 @@
       
         <em class="default">(defaults to: <tt>present</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Whether the dashboard API should be configured or not</p>
+</div>
       
     </li>
   
@@ -103,6 +128,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The base path to the client config file.</p>
+</div>
+      
     </li>
   
     <li>
@@ -115,6 +144,10 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The datacenter name.</p>
+</div>
       
     </li>
   
@@ -129,6 +162,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The port of the Sensu API.</p>
+</div>
+      
     </li>
   
     <li>
@@ -141,6 +178,10 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to use the HTTPS protocol.</p>
+</div>
       
     </li>
   
@@ -155,6 +196,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Whether or not to accept an insecure SSL certificate.</p>
+</div>
+      
     </li>
   
     <li>
@@ -167,6 +212,10 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The path of the Sensu API. Leave empty unless your Sensu API is not mounted to /.</p>
+</div>
       
     </li>
   
@@ -181,6 +230,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The timeout for the Sensu API, in seconds.</p>
+</div>
+      
     </li>
   
     <li>
@@ -193,6 +246,10 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The username of the Sensu API. Leave empty for no authentication.</p>
+</div>
       
     </li>
   
@@ -207,6 +264,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The password of the Sensu API. Leave empty for no authentication.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -219,38 +280,38 @@
         <pre class="lines">
 
 
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
 54
 55
 56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82</pre>
+57</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/enterprise/dashboard/api.pp', line 54</span>
+        <pre class="code"><span class="info file"># File 'manifests/enterprise/dashboard/api.pp', line 29</span>
 
 define sensu::enterprise::dashboard::api (
   Enum[&#39;present&#39;,&#39;absent&#39;] $ensure = present,
@@ -265,7 +326,7 @@ define sensu::enterprise::dashboard::api (
   Optional[String]  $pass          = undef,
 ) {
 
-  require ::sensu::enterprise::dashboard::config
+  require ::sensu::enterprise::dashboard
 
   sensu_enterprise_dashboard_api_config { $title:
     ensure     =&gt; $ensure,
@@ -288,7 +349,7 @@ define sensu::enterprise::dashboard::api (
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

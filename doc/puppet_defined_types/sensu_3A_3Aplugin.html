@@ -69,61 +69,14 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Installs Sensu plugins
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Define: sensu::plugin</p>
-
-<p>Installs the Sensu community script and plugins
+    <p>Installs the Sensu community script and plugins
 which can be used as monitoring checks</p>
-
-<p>== Parameters</p>
-
-<p>[<em>type</em>]
-  String.  Plugin source
-  Default: file
-  Valid values: file, directory, package, url</p>
-
-<p>[<em>install_path</em>]
-  String.  The path to install the plugin
-  Default: /etc/sensu/plugins</p>
-
-<p>[<em>purge</em>]
-  Boolean.  When using a directory source, purge setting
-  Default: true
-  Valid values: true, false</p>
-
-<p>[<em>recurse</em>]
-  Boolean.  When using a directory source, recurse setting
-  Default: true
-  Valid values: true, false</p>
-
-<p>[<em>force</em>]
-  Boolean.  When using a directory source, force setting
-  Default: true
-  Valid values: true, false</p>
-
-<p>[<em>pkg_version</em>]
-  String.  When using package source, version to install
-  Default: latest
-  Valid values: absent, installed, latest, present, [\d.-]+</p>
-
-<p>[<em>pkg_provider</em>]
-  String.  When using package to install plugins, provider to use.
-  Default: undef (taken from $::sensu::sensu_plugin_provider)
-  Valid values: sensu_gem, apt, aptitude, yum</p>
-
-<p>[<em>nocheckcertificate</em>]
-  Boolean.  When using url source, disable certificate checking for HTTPS
-  Default: false
-  Valid values: true, false</p>
-
-<p>[<em>gem_install_options</em>]
-  Optional configuration to use for the installation of the
-  sensu plugin gem with sensu_gem provider.
-  See: <a href="https://docs.puppetlabs.com/references/latest/type.html#package-attribute-install_options">https://docs.puppetlabs.com/references/latest/type.html#package-attribute-install_options</a>
-  Default: $::sensu::gem_install_options
-  Example value: [{ &#39;-p&#39; =&gt; &#39;<a href="http://user:pass@myproxy.company.org:8080">http://user:pass@myproxy.company.org:8080</a>&#39; }]</p>
 
   </div>
 </div>
@@ -142,6 +95,11 @@ which can be used as monitoring checks</p>
         <em class="default">(defaults to: <tt>&#39;file&#39;</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Plugin source
+Valid values: file, directory, package, url</p>
+</div>
+      
     </li>
   
     <li>
@@ -149,11 +107,15 @@ which can be used as monitoring checks</p>
         <span class='name'>install_path</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>&#39;/etc/sensu/plugins&#39;</tt>)</em>
+        <em class="default">(defaults to: <tt>$::osfamily</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The path to install the plugin</p>
+</div>
       
     </li>
   
@@ -168,6 +130,10 @@ which can be used as monitoring checks</p>
         <em class="default">(defaults to: <tt>true</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>When using a directory source, purge setting</p>
+</div>
+      
     </li>
   
     <li>
@@ -180,6 +146,10 @@ which can be used as monitoring checks</p>
       
         <em class="default">(defaults to: <tt>true</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>When using a directory source, recurse setting</p>
+</div>
       
     </li>
   
@@ -194,6 +164,10 @@ which can be used as monitoring checks</p>
         <em class="default">(defaults to: <tt>true</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>When using a directory source, force setting</p>
+</div>
+      
     </li>
   
     <li>
@@ -206,6 +180,10 @@ which can be used as monitoring checks</p>
       
         <em class="default">(defaults to: <tt>&#39;latest&#39;</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>When using package source, version to install</p>
+</div>
       
     </li>
   
@@ -220,6 +198,11 @@ which can be used as monitoring checks</p>
         <em class="default">(defaults to: <tt>$::sensu::sensu_plugin_provider</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>When using package to install plugins, provider to use.
+Valid values: sensu_gem, apt, aptitude, yum</p>
+</div>
+      
     </li>
   
     <li>
@@ -232,6 +215,11 @@ which can be used as monitoring checks</p>
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The packake&#39;s MD5 checksum.
+Valid values: Any valid MD5 string of the wanted package</p>
+</div>
       
     </li>
   
@@ -246,6 +234,10 @@ which can be used as monitoring checks</p>
         <em class="default">(defaults to: <tt>false</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>When using url source, disable certificate checking for HTTPS</p>
+</div>
+      
     </li>
   
     <li>
@@ -259,6 +251,13 @@ which can be used as monitoring checks</p>
         <em class="default">(defaults to: <tt>$::sensu::gem_install_options</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Optional configuration to use for the installation of the
+sensu plugin gem with sensu_gem provider.
+See: <a href="https://docs.puppetlabs.com/references/latest/type.html#package-attribute-install_options">https://docs.puppetlabs.com/references/latest/type.html#package-attribute-install_options</a>
+Example value: [{ &#39;-p&#39; =&gt; &#39;<a href="http://user:pass@myproxy.company.org:8080">http://user:pass@myproxy.company.org:8080</a>&#39; }]</p>
+</div>
+      
     </li>
   
 </ul>
@@ -271,6 +270,28 @@ which can be used as monitoring checks</p>
         <pre class="lines">
 
 
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
 54
 55
 56
@@ -350,33 +371,17 @@ which can be used as monitoring checks</p>
 130
 131
 132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152</pre>
+133</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/plugin.pp', line 54</span>
+        <pre class="code"><span class="info file"># File 'manifests/plugin.pp', line 32</span>
 
 define sensu::plugin (
   Enum[&#39;file&#39;,&#39;url&#39;,&#39;package&#39;,&#39;directory&#39;] $type                = &#39;file&#39;,
-  String $install_path        = &#39;/etc/sensu/plugins&#39;,
+  Stdlib::Absolutepath $install_path = $::osfamily ? {
+    &#39;windows&#39; =&gt; &#39;C:/opt/sensu/plugins&#39;,
+    default   =&gt; &#39;/etc/sensu/plugins&#39;,
+  },
   Boolean $purge               = true,
   Boolean $recurse             = true,
   Boolean $force               = true,
@@ -480,7 +485,7 @@ define sensu::plugin (
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

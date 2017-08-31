@@ -69,115 +69,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Creates Sensu checks
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>[<em>contacts</em>]
-  Array of Strings.  Contacts to use for the contact-routing
-  Sensu Enterprise feature.  This value corresponds with a sensu::contact
-  resource having the same name.
-  Default: undef</p>
-
-<p>[<em>standalone</em>]
-  Boolean.  When true, scheduled by the client.  When false, listen for published check request
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: true</p>
-
-<p>[<em>cron</em>]
-  String.  When the check should be executed, using the <a href="https://en.wikipedia.org/wiki/Cron#CRON_expression">Cron
-  syntax</a>.  Supersedes the
-  <code>interval</code> parameter.  Example: <code>&quot;0 0 * * *&quot;</code>.
-  Default: &#39;absent&#39;</p>
-
-<p>[<em>interval</em>]
-  Integer.  How frequently (in seconds) the check will be executed
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: 60</p>
-
-<p>[<em>occurrences</em>]
-  Integer.  The number of event occurrences before the handler should take action.
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>refresh</em>]
-  Integer.  The number of seconds sensu-plugin-aware handlers should wait before taking second action.
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>source</em>]
-  String.  The check source, used to create a JIT Sensu client for an external resource (e.g. a network switch).
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>subscribers</em>]
-  Array of Strings.  Which subscriptions must execute this check
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>low_flap_threshold</em>]
-  Integer.  Flap detection - see Nagios Flap Detection: <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">http://nagios.sourceforge.net/docs/3_0/flapping.html</a>
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>high_flap_threshold</em>]
-  Integer.  Flap detection - see Nagios Flap Detection: <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">http://nagios.sourceforge.net/docs/3_0/flapping.html</a>
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>timeout</em>]
-  Numeric.  Check timeout in seconds, after it fails
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>aggregate</em>]
-  String.  Aggregates, preventing event floods. Set &#39;aggregate:<name> and &#39;handle&#39;:false, this prevents the
-  server from sending to a handler, and makes the aggregated results available under /aggregates in the REST API
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>aggregates</em>]
-  Array of Strings. An array of aggregates to add to the check. This supercedes the above aggregate parameter
-  Set this to &#39;absent&#39; to remove it completely.
-  Defaults: undef</p>
-
-<p>[<em>handle</em>]
-  Boolean.  When false, check will not be sent to handlers
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>publish</em>]
-  Boolean.  Unpublished checks. Prevents the check from being triggered on clients. This allows for the definition
-  of commands that are not actually &#39;checks&#39; per say, but actually arbitrary commands for remediation
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>dependencies</em>]
-  Array.  List of checks this check depends on.  Note: The validity of the other checks is not enforced by puppet
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>custom</em>]
-  Hash. List of custom attributes to include in the check. You can use it to pass any attribute that is not listed here explicitly.
-  Default: undef
-  Example: { &#39;remediation&#39; =&gt; { &#39;low_remediation&#39; =&gt; { &#39;occurrences&#39; =&gt; [1,2], &#39;severities&#39; =&gt; [1], &#39;command&#39; =&gt; &quot;/bin/command&quot;, &#39;publish&#39; =&gt; false, } } }</p>
-
-<p>[<em>ttl</em>]
-  Integer. The time to live (TTL) in seconds until check results are considered stale.
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>subdue</em>]
-  Hash.  Check subdue configuration
-  Set this to &#39;absent&#39; to remove it completely.
-  Default: undef</p>
-
-<p>[<em>proxy_requests</em>]
-  Hash.  <a href="https://sensuapp.org/docs/latest/reference/checks.html#proxy-requests-attributes">Proxy Check
-  Requests</a>
-  Since Sensu 0.28.0.  Publishes a check request to every Sensu client which
-  matches the defined client attributes.  See the documentation for the format
-  of the Hash value.
-  Default: undef</p>
+    <p>This define manages Sensu checks</p>
 
   </div>
 </div>
@@ -196,6 +94,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The check command to run</p>
+</div>
+      
     </li>
   
     <li>
@@ -208,6 +110,11 @@
       
         <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Whether the check should be present or not.
+Valid values: present, absent</p>
+</div>
       
     </li>
   
@@ -222,6 +129,10 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Type of check. Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -235,6 +146,11 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Array of Strings. Handlers to use for this check.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -242,11 +158,17 @@
         <span class='name'>contacts</span>
       
       
-        <span class='type'>(<tt>Optional[Array]</tt>)</span>
+        <span class='type'>(<tt>Variant[Undef,String,Array]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Array of Strings. Contacts to use for the contact-routing
+Sensu Enterprise feature.  This value corresponds with a sensu::contact
+resource having the same name.</p>
+</div>
       
     </li>
   
@@ -261,6 +183,11 @@
         <em class="default">(defaults to: <tt>true</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>When true, scheduled by the client. When false, listen for
+published check request. Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -273,6 +200,12 @@
       
         <em class="default">(defaults to: <tt>&#39;absent&#39;</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>When the check should be executed, using the <a href="https://en.wikipedia.org/wiki/Cron#CRON_expression">Cron
+syntax</a>. Supersedes the
+<code>interval</code> parameter.  Example: <code>&quot;0 0 * * *&quot;</code>.</p>
+</div>
       
     </li>
   
@@ -287,6 +220,11 @@
         <em class="default">(defaults to: <tt>60</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>How frequently (in seconds) the check will be executed.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -299,6 +237,11 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The number of event occurrences before the handler should
+take action. Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
       
     </li>
   
@@ -313,6 +256,11 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The number of seconds sensu-plugin-aware handlers should wait
+before taking second action. Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -325,6 +273,12 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>The check source, used to create a JIT Sensu client for an
+external resource (e.g. a network switch). Set this to &#39;absent&#39; to remove
+it completely.</p>
+</div>
       
     </li>
   
@@ -339,6 +293,11 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Array of Strings. Which subscriptions must execute this check.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -351,6 +310,11 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Flap detection - see <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">Nagios Flap Detection</a>.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
       
     </li>
   
@@ -365,6 +329,11 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Flap detection - see <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">Nagios Flap Detection</a>.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -377,6 +346,11 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Check timeout in seconds, after it fails.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
       
     </li>
   
@@ -391,6 +365,13 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Aggregates, preventing event floods. Set &#39;aggregate:<name>&#39; and
+&#39;handle:false&#39;, this prevents the server from sending to a handler, and makes
+the aggregated results available under /aggregates in the REST API.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -403,6 +384,12 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Array of Strings. An array of aggregates to add to the check.
+This supercedes the above aggregate parameter.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
       
     </li>
   
@@ -417,6 +404,11 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>When false, check will not be sent to handlers.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -429,6 +421,14 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Unpublished checks. Prevents the check from being triggered on
+clients. This allows for the definition of commands that are not actually
+&#39;checks&#39; per say, but actually arbitrary commands for remediation.
+Set this to &#39;absent&#39; to remove it completely.
+Default: undef</p>
+</div>
       
     </li>
   
@@ -443,6 +443,32 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>List of checks this check depends on.
+Note: The validity of the other checks is not enforced by puppet
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>content</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Mapping of arbitrary attributes from the top-level of the target
+configuration JSON map.  This parameter is intended to configure plugins and
+extensions which look up values outside of the check configuration scope.
+Example: { &quot;mailer&quot; =&gt; { &quot;mail_from&quot; =&gt; &quot;<a href="mailto:sensu@example.com">sensu@example.com</a>&quot;, &quot;mail_to&quot; =&gt; &quot;<a href="mailto:monitor@example.com">monitor@example.com</a>&quot; } }</p>
+</div>
+      
     </li>
   
     <li>
@@ -455,6 +481,12 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>List of custom attributes to include in the check.
+You can use it to pass any attribute that is not listed here explicitly.
+Example: { &#39;remediation&#39; =&gt; { &#39;low_remediation&#39; =&gt; { &#39;occurrences&#39; =&gt; [1,2], &#39;severities&#39; =&gt; [1], &#39;command&#39; =&gt; &quot;/bin/command&quot;, &#39;publish&#39; =&gt; false, } } }</p>
+</div>
       
     </li>
   
@@ -469,6 +501,11 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>The time to live (TTL) in seconds until check results are
+considered stale. Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
+      
     </li>
   
     <li>
@@ -481,6 +518,11 @@
       
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
+      
+        &mdash;
+        <div class='inline'><p>Check subdue configuration.
+Set this to &#39;absent&#39; to remove it completely.</p>
+</div>
       
     </li>
   
@@ -495,6 +537,13 @@
         <em class="default">(defaults to: <tt>undef</tt>)</em>
       
       
+        &mdash;
+        <div class='inline'><p>Manages <a href="https://sensuapp.org/docs/latest/reference/checks.html#proxy-requests-attributes">Proxy Check Requests</a>
+Since Sensu 0.28.0.  Publishes a check request to every Sensu client which
+matches the defined client attributes.  See the documentation for the format
+of the Hash value.</p>
+</div>
+      
     </li>
   
 </ul>
@@ -507,6 +556,45 @@
         <pre class="lines">
 
 
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
 132
 133
 134
@@ -620,17 +708,32 @@
 242
 243
 244
-245</pre>
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/check.pp', line 132</span>
+        <pre class="code"><span class="info file"># File 'manifests/check.pp', line 93</span>
 
 define sensu::check (
   Optional[String]                      $command = undef,
   Enum[&#39;present&#39;,&#39;absent&#39;]              $ensure = &#39;present&#39;,
   Optional[String]                      $type = undef,
   Variant[Undef,String,Array]           $handlers = undef,
-  Optional[Array]                       $contacts = undef,
+  Variant[Undef,String,Array]           $contacts = undef,
   Variant[Boolean,Enum[&#39;absent&#39;]]       $standalone = true,
   String                                $cron = &#39;absent&#39;,
   Variant[Integer,Enum[&#39;absent&#39;]]       $interval = 60,
@@ -647,6 +750,7 @@ define sensu::check (
   Variant[Undef,Enum[&#39;absent&#39;],Boolean] $publish = undef,
   Variant[Undef,String,Array]           $dependencies = undef,
   Optional[Hash]                        $custom = undef,
+  Hash                                  $content = {},
   Variant[Undef,Enum[&#39;absent&#39;],Integer] $ttl = undef,
   Variant[Undef,Enum[&#39;absent&#39;],Hash]    $subdue = undef,
   Variant[Undef,Enum[&#39;absent&#39;],Hash]    $proxy_requests = undef,
@@ -696,47 +800,100 @@ define sensu::check (
     }
   }
 
+  case $handlers {
+    Pattern[/absent/]: { $handlers_array = undef }
+    String:   { $handlers_array = [ $handlers ] }
+    default:  { $handlers_array = $handlers }
+  }
+  case $subscribers {
+    Pattern[/absent/]: { $subscribers_array = undef }
+    String:   { $subscribers_array = [ $subscribers ] }
+    default:  { $subscribers_array = $subscribers }
+  }
+  case $aggregates {
+    Pattern[/absent/]: { $aggregates_array = undef }
+    String:   { $aggregates_array = [ $aggregates ] }
+    default:  { $aggregates_array = $aggregates }
+  }
+  case $contacts {
+    Pattern[/absent/]: { $contacts_array = undef }
+    String:   { $contacts_array = [ $contacts ] }
+    default:  { $contacts_array = $contacts }
+  }
+  case $dependencies {
+    Pattern[/absent/]: { $dependencies_array = undef }
+    String:   { $dependencies_array = [ $dependencies ] }
+    default:  { $dependencies_array = $dependencies }
+  }
+
   # (#463) All plugins must come before all checks.  Collections are not used to
   # avoid realizing any resources.
   Anchor[&#39;plugins_before_checks&#39;]
   ~&gt; Sensu::Check[$name]
 
-  file { &quot;${conf_dir}/checks/${check_name}.json&quot;:
-    ensure =&gt; $ensure,
-    owner  =&gt; $user,
-    group  =&gt; $group,
-    mode   =&gt; $file_mode,
-    before =&gt; Sensu_check[$check_name],
-  }
-
-  sensu_check { $check_name:
-    ensure              =&gt; $ensure,
-    base_path           =&gt; &quot;${conf_dir}/checks&quot;,
+  # This Hash map will ultimately exist at `{&quot;checks&quot; =&gt; {&quot;$check_name&quot; =&gt;
+  # $check_config}}`
+  $check_config_start = {
     type                =&gt; $type,
     standalone          =&gt; $standalone,
     command             =&gt; $command,
-    handlers            =&gt; $handlers,
-    contacts            =&gt; $contacts,
+    handlers            =&gt; $handlers_array,
+    contacts            =&gt; $contacts_array,
     cron                =&gt; $cron,
     interval            =&gt; $interval_real,
     occurrences         =&gt; $occurrences,
     refresh             =&gt; $refresh,
     source              =&gt; $source,
-    subscribers         =&gt; $subscribers,
+    subscribers         =&gt; $subscribers_array,
     low_flap_threshold  =&gt; $low_flap_threshold,
     high_flap_threshold =&gt; $high_flap_threshold,
     timeout             =&gt; $timeout,
     aggregate           =&gt; $aggregate,
-    aggregates          =&gt; $aggregates,
+    aggregates          =&gt; $aggregates_array,
     handle              =&gt; $handle,
     publish             =&gt; $publish,
-    dependencies        =&gt; $dependencies,
-    custom              =&gt; $custom,
+    dependencies        =&gt; $dependencies_array,
     subdue              =&gt; $subdue,
     proxy_requests      =&gt; $proxy_requests,
-    require             =&gt; File[&quot;${conf_dir}/checks&quot;],
-    notify              =&gt; $::sensu::check_notify,
     ttl                 =&gt; $ttl,
+  }
+
+  # Remove key/value pares where the value is `undef` or `&quot;absent&quot;`.
+  $check_config_pruned = $check_config_start.reduce({}) |$memo, $kv| {
+    $kv[1] ? {
+      undef    =&gt; $memo,
+      &#39;absent&#39; =&gt; $memo,
+      default  =&gt; $memo + Hash.new($kv),
+    }
+  }
+
+  # Merge the specified properties on top of the custom hash.
+  if $custom == undef {
+    $check_config = $check_config_pruned
+  } else {
+    $check_config = $custom + $check_config_pruned
+  }
+
+  # Merge together the &quot;checks&quot; scope with any arbitrary config specified via
+  # `content`.
+  $checks_scope_start = { $check_name =&gt; $check_config }
+  if $content[&#39;checks&#39;] == undef {
+    $checks_scope = { &#39;checks&#39; =&gt; $checks_scope_start }
+  } else {
+    $checks_scope = { &#39;checks&#39; =&gt; $content[&#39;checks&#39;] + $checks_scope_start }
+  }
+
+  # The final structure from the top level.  Check configuration scope is merged
+  # on top of any arbitrary plugin and extension configuration in $content.
+  $content_real = $content + $checks_scope
+
+  sensu::write_json { &quot;${conf_dir}/checks/${check_name}.json&quot;:
+    ensure      =&gt; $ensure,
+    content     =&gt; $content_real,
+    owner       =&gt; $user,
+    group       =&gt; $group,
+    mode        =&gt; $file_mode,
+    notify_list =&gt; $::sensu::check_notify,
   }
 }</pre>
       </td>
@@ -746,7 +903,7 @@ define sensu::check (
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

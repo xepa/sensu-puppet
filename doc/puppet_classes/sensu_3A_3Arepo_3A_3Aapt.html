@@ -71,14 +71,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Adds the Sensu repo to Apt
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Class: sensu::repo::apt</p>
-
-<p>Adds the Sensu repo to Apt</p>
-
-<p>== Parameters</p>
+    <p>Adds the Sensu repo to Apt</p>
 
   </div>
 </div>
@@ -92,6 +91,8 @@
         <pre class="lines">
 
 
+5
+6
 7
 8
 9
@@ -161,22 +162,12 @@
 73
 74
 75
-76
-77
-78
-79
-80
-81
-82</pre>
+76</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/repo/apt.pp', line 7</span>
+        <pre class="code"><span class="info file"># File 'manifests/repo/apt.pp', line 5</span>
 
 class sensu::repo::apt {
-
-  if $caller_module_name != $module_name {
-    fail(&quot;Use of private class ${name} by ${caller_module_name}&quot;)
-  }
 
   if defined(apt::source) {
 
@@ -255,7 +246,7 @@ class sensu::repo::apt {
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>

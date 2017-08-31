@@ -71,12 +71,13 @@
   </dl>
 </div>
 
+  <h2>Summary</h2>
+  Sets the Sensu redis config
+
 <h2>Overview</h2>
 <div class="docstring">
   <div class="discussion">
-    <p>= Class: sensu::redis::config</p>
-
-<p>Sets the Sensu redis config</p>
+    <p>Sets the Sensu redis config</p>
 
   </div>
 </div>
@@ -125,20 +126,12 @@
 37
 38
 39
-40
-41
-42
-43
-44</pre>
+40</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/redis/config.pp', line 5</span>
 
 class sensu::redis::config {
-
-  if $caller_module_name != $module_name {
-    fail(&quot;Use of private class ${name} by ${caller_module_name}&quot;)
-  }
 
   if $::sensu::_purge_config and !$::sensu::server and !$::sensu::api and !$::sensu::enterprise and $::sensu::transport_type != &#39;redis&#39; {
     $ensure = &#39;absent&#39;
@@ -181,7 +174,7 @@ class sensu::redis::config {
 </div>
 
       <div id="footer">
-  Generated on Sun Aug 27 20:36:21 2017 by
+  Generated on Thu Aug 31 17:32:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.1.9).
 </div>
