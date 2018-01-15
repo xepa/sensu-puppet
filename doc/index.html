@@ -68,6 +68,10 @@
 
 <p><a href="https://travis-ci.org/sensu/sensu-puppet"><img src="https://travis-ci.org/sensu/sensu-puppet.png" alt="Build Status"></a></p>
 
+<p>This module supports the latest releases of Puppet versions 4 and 5
+using the ruby that is packaged with the AIO (all-in-one installer). See
+<code>.travis.yml</code> for an exact matrix.</p>
+
 <h2>Documented with Puppet Strings</h2>
 
 <p><a href="http://sensu.github.io/sensu-puppet/doc/">Puppet Strings documentation</a></p>
@@ -513,6 +517,25 @@ the sensu::plugin define:</p>
       &quot;boolval&quot;: true
     }
   }
+}
+</code></pre>
+
+<h2>Using hooks in check definitions</h2>
+
+<p><a href="https://sensuapp.org/docs/latest/reference/checks.html#check-hooks">Hooks</a> are commands run by the Sensu client in response
+to the result of check command execution. They have been introduced in Sensu 1.1.</p>
+
+<p>Valid hooks names are integers from 1 to 255 and the strings &#39;ok&#39;, &#39;warning&#39;, &#39;critical&#39;, &#39;unknown&#39; and &#39;non-zero&#39;.</p>
+
+<pre class="code puppet"><code class="puppet">sensu::check{ &#39;check_file_test&#39;:
+  command      =&gt; &#39;/usr/local/bin/check_file_test.sh&#39;,
+  handlers     =&gt; &#39;notifu&#39;,
+  hooks =&gt; {
+    &#39;non-zero&#39; =&gt; {
+      &#39;command&#39; =&gt; &#39;ps aux&#39;,
+     }
+  },
+  subscribers  =&gt; &#39;sensu-test&#39;
 }
 </code></pre>
 

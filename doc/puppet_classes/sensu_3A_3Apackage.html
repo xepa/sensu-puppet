@@ -140,6 +140,23 @@ Note: This has no effect on sensu-core.</p>
   
     <li>
       
+        <span class='name'>config_file</span>
+      
+      
+        <span class='type'>(<tt>Variant[Stdlib::Absolutepath,Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::config_file</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the CONFIG_FILE environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>deregister_handler</span>
       
       
@@ -307,8 +324,6 @@ ruby, is not recommended.</p>
         <pre class="lines">
 
 
-37
-38
 39
 40
 41
@@ -569,15 +584,19 @@ ruby, is not recommended.</p>
 296
 297
 298
-299</pre>
+299
+300
+301
+302</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/package.pp', line 37</span>
+        <pre class="code"><span class="info file"># File 'manifests/package.pp', line 39</span>
 
 class sensu::package (
   Optional[String] $conf_dir            = $::sensu::conf_dir,
   Variant[String,Array,Undef] $confd_dir = $::sensu::confd_dir,
   Variant[Undef,Integer,Pattern[/^(\d+)/]] $heap_size = $::sensu::heap_size,
+  Variant[Stdlib::Absolutepath,Undef] $config_file = $::sensu::config_file,
   Optional[String] $deregister_handler  = $::sensu::deregister_handler,
   Optional[Boolean] $deregister_on_stop = $::sensu::deregister_on_stop,
   Optional[String] $gem_path            = $::sensu::gem_path,

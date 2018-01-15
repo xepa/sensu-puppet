@@ -159,10 +159,10 @@ any Sensu services to restart them when using this defined resource type.</p>
         <span class='name'>mode</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>Stdlib::Filemode</tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>&#39;0755&#39;</tt>)</em>
+        <em class="default">(defaults to: <tt>&#39;0775&#39;</tt>)</em>
       
       
         &mdash;
@@ -268,7 +268,7 @@ define sensu::write_json (
   Enum[&#39;present&#39;, &#39;absent&#39;] $ensure = &#39;present&#39;,
   String                    $owner = &#39;sensu&#39;,
   String                    $group = &#39;sensu&#39;,
-  String                    $mode = &#39;0755&#39;,
+  Stdlib::Filemode          $mode = &#39;0775&#39;,
   Boolean                   $pretty = true,
   Hash                      $content = {},
   Array[Variant[Data,Type]] $notify_list = [],

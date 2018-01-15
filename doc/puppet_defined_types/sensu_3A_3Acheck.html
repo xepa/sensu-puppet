@@ -77,6 +77,10 @@
   <div class="discussion">
     <p>This define manages Sensu checks</p>
 
+<p><a href="https://sensuapp.org/docs/latest/reference/checks.html#hooks-attributes">Hooks</a>
+  Since Sensu 1.1.0.  Manages hooks for a check. See the documentation for the format
+  of the Hash value.</p>
+
   </div>
 </div>
 <div class="tags">
@@ -546,6 +550,23 @@ of the Hash value.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>hooks</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,Enum['absent'],Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Manages</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -556,11 +577,6 @@ of the Hash value.</p>
         <pre class="lines">
 
 
-93
-94
-95
-96
-97
 98
 99
 100
@@ -723,10 +739,23 @@ of the Hash value.</p>
 257
 258
 259
-260</pre>
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/check.pp', line 93</span>
+        <pre class="code"><span class="info file"># File 'manifests/check.pp', line 98</span>
 
 define sensu::check (
   Optional[String]                      $command = undef,
@@ -754,6 +783,7 @@ define sensu::check (
   Variant[Undef,Enum[&#39;absent&#39;],Integer] $ttl = undef,
   Variant[Undef,Enum[&#39;absent&#39;],Hash]    $subdue = undef,
   Variant[Undef,Enum[&#39;absent&#39;],Hash]    $proxy_requests = undef,
+  Variant[Undef,Enum[&#39;absent&#39;],Hash]    $hooks = undef,
 ) {
   if $ensure == &#39;present&#39; and !$command {
     fail(&quot;sensu::check{${name}}: a command must be given when ensure is present&quot;)
@@ -785,17 +815,13 @@ define sensu::check (
 
   case $::osfamily {
     &#39;windows&#39;: {
-      $etc_dir = &#39;C:/opt/sensu&#39;
-      $conf_dir = &quot;${etc_dir}/conf.d&quot;
-      $user = undef
-      $group = undef
+      $etc_dir   = &#39;C:/opt/sensu&#39;
+      $conf_dir  = &quot;${etc_dir}/conf.d&quot;
       $file_mode = undef
     }
     default: {
-      $etc_dir = &#39;/etc/sensu&#39;
-      $conf_dir = &quot;${etc_dir}/conf.d&quot;
-      $user = &#39;sensu&#39;
-      $group = &#39;sensu&#39;
+      $etc_dir   = &#39;/etc/sensu&#39;
+      $conf_dir  = &quot;${etc_dir}/conf.d&quot;
       $file_mode = &#39;0440&#39;
     }
   }
@@ -831,6 +857,16 @@ define sensu::check (
   Anchor[&#39;plugins_before_checks&#39;]
   ~&gt; Sensu::Check[$name]
 
+  if is_hash($hooks) {
+    $hooks.each |$k,$v| {
+      $valid_k = $k ? {
+        Integer[1,255]                                           =&gt; true,
+        Enum[&#39;ok&#39;, &#39;warning&#39;, &#39;critical&#39;, &#39;unknown&#39;, &#39;non-zero&#39;] =&gt; true,
+        default =&gt; fail(&quot;Illegal value for ${k} hook. Valid values are: Integers from 1 to 255 and any of &#39;ok&#39;, &#39;warning&#39;, &#39;critical&#39;, &#39;unknown&#39;, &#39;non-zero&#39;&quot;),
+      }
+    }
+  }
+
   # This Hash map will ultimately exist at `{&quot;checks&quot; =&gt; {&quot;$check_name&quot; =&gt;
   # $check_config}}`
   $check_config_start = {
@@ -855,6 +891,7 @@ define sensu::check (
     dependencies        =&gt; $dependencies_array,
     subdue              =&gt; $subdue,
     proxy_requests      =&gt; $proxy_requests,
+    hooks               =&gt; $hooks,
     ttl                 =&gt; $ttl,
   }
 
@@ -890,8 +927,8 @@ define sensu::check (
   sensu::write_json { &quot;${conf_dir}/checks/${check_name}.json&quot;:
     ensure      =&gt; $ensure,
     content     =&gt; $content_real,
-    owner       =&gt; $user,
-    group       =&gt; $group,
+    owner       =&gt; $::sensu::user,
+    group       =&gt; $::sensu::group,
     mode        =&gt; $file_mode,
     notify_list =&gt; $::sensu::check_notify,
   }

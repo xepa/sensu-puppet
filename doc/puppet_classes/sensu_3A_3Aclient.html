@@ -264,7 +264,12 @@ Valid values: debug, info, warn, error, fatal</p>
 95
 96
 97
-98</pre>
+98
+99
+100
+101
+102
+103</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/client.pp', line 14</span>
@@ -351,7 +356,12 @@ class sensu::client (
     redact         =&gt; $::sensu::redact,
     deregister     =&gt; $::sensu::client_deregister,
     deregistration =&gt; $::sensu::client_deregistration,
+    registration   =&gt; $::sensu::client_registration,
     http_socket    =&gt; $::sensu::client_http_socket,
+    servicenow     =&gt; $::sensu::client_servicenow,
+    ec2            =&gt; $::sensu::client_ec2,
+    chef           =&gt; $::sensu::client_chef,
+    puppet         =&gt; $::sensu::client_puppet,
   }
 }</pre>
       </td>

@@ -492,6 +492,42 @@ sensu::plugin with type &#39;directory&#39;.</p>
   
     <li>
       
+        <span class='name'>sensu_user</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Name of the user Sensu is running as. Default is calculated
+according to the underlying OS</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sensu_group</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Name of the group Sensu is running as. Default is calculated
+according to the underlying OS</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>rabbitmq_port</span>
       
       
@@ -1110,6 +1146,26 @@ recommendations for controlling client deregistration behavior.</p>
   
     <li>
       
+        <span class='name'>client_registration</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>(<a href="https://sensuapp.org/docs/latest/reference/clients#registration-attributes">https://sensuapp.org/docs/latest/reference/clients#registration-attributes</a>)
+used to generate check result data for the registration event. Client
+registration attributes are merged with some default check definition
+attributes by the Sensu server during client registration.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>client_keepalive</span>
       
       
@@ -1120,7 +1176,7 @@ recommendations for controlling client deregistration behavior.</p>
       
       
         &mdash;
-        <div class='inline'><p>Client keepalive config</p>
+        <div class='inline'><p>Client keepalive configuration</p>
 </div>
       
     </li>
@@ -1137,7 +1193,86 @@ recommendations for controlling client deregistration behavior.</p>
       
       
         &mdash;
-        <div class='inline'><p>Client http_socket config</p>
+        <div class='inline'><p>Client http_socket configuration. Must be an Hash of
+parameters as described in:
+<a href="https://sensuapp.org/docs/latest/reference/clients.html#http-socket-attributes">https://sensuapp.org/docs/latest/reference/clients.html#http-socket-attributes</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_servicenow</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Client servicenow configuration. Supported only
+on Sensu Enterprise. It expects an Hash with a single key named
+&#39;configuration_item&#39; containing an Hash of parameters, as described in:
+<a href="https://sensuapp.org/docs/latest/reference/clients.html#servicenow-attributes">https://sensuapp.org/docs/latest/reference/clients.html#servicenow-attributes</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_ec2</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Client ec2 configuration. Supported only on Sensu
+Enterprise. It expects an Hash with valid paramters as described in:
+<a href="https://sensuapp.org/docs/latest/reference/clients.html#ec2-attributes">https://sensuapp.org/docs/latest/reference/clients.html#ec2-attributes</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_chef</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Client chef configuration. Supported only on Sensu
+Enterprise. It expects an Hash with valid paramters as described in:
+<a href="https://sensuapp.org/docs/latest/reference/clients.html#chef-attributes">https://sensuapp.org/docs/latest/reference/clients.html#chef-attributes</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_puppet</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Client puppet configuration. Supported only on Sensu
+Enterprise. It expects an Hash with valid paramters as described in:
+<a href="https://sensuapp.org/docs/latest/reference/clients.html#puppet-attributes">https://sensuapp.org/docs/latest/reference/clients.html#puppet-attributes</a></p>
 </div>
       
     </li>
@@ -1766,6 +1901,74 @@ Note: This has effect only on Sensu Enterprise.</p>
   
     <li>
       
+        <span class='name'>max_open_files</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,Integer,Pattern[/^(\d+)$/]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the MAX_OPEN_FILES environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>config_file</span>
+      
+      
+        <span class='type'>(<tt>Variant[Stdlib::Absolutepath,Undef]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the CONFIG_FILE environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>heap_dump_path</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the HEAP_DUMP_PATH environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_opts</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the JAVA_OPTS environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>enterprise_version</span>
       
       
@@ -2086,44 +2289,6 @@ Note: This has effect only on Sensu Enterprise.</p>
         <pre class="lines">
 
 
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312
 313
 314
 315
@@ -2371,10 +2536,77 @@ Note: This has effect only on Sensu Enterprise.</p>
 557
 558
 559
-560</pre>
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 275</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 313</span>
 
 class sensu (
   Pattern[/^absent$/, /^installed$/, /^latest$/, /^present$/, /^[\d\.\-el]+$/] $version = &#39;installed&#39;,
@@ -2411,6 +2643,8 @@ class sensu (
   Boolean            $manage_plugins_dir = true,
   Boolean            $manage_handlers_dir = true,
   Boolean            $manage_mutators_dir = true,
+  Optional[String]   $sensu_user = undef,
+  Optional[String]   $sensu_group = undef,
   Variant[Undef,Integer,Pattern[/^(\d+)$/]] $rabbitmq_port = undef,
   Optional[String]   $rabbitmq_host = undef,
   Optional[String]   $rabbitmq_user = undef,
@@ -2448,8 +2682,13 @@ class sensu (
   Hash               $client_custom = {},
   Variant[Undef,Boolean] $client_deregister = undef,
   Variant[Undef,Hash] $client_deregistration = undef,
+  Variant[Undef,Hash] $client_registration = undef,
   Hash               $client_keepalive = {},
   Hash               $client_http_socket = {},
+  Hash               $client_servicenow = {},
+  Hash               $client_ec2 = {},
+  Hash               $client_chef = {},
+  Hash               $client_puppet = {},
   Boolean            $safe_mode = false,
   Variant[String,Array,Hash] $plugins = [],
   Hash               $plugins_defaults = {},
@@ -2493,6 +2732,10 @@ class sensu (
   String             $windows_package_title = &#39;sensu&#39;,
   Optional[Variant[Stdlib::Absolutepath,Array[Stdlib::Absolutepath]]] $confd_dir = undef,
   Variant[Integer,Pattern[/^(\d+)/],Undef] $heap_size = undef,
+  Variant[Stdlib::Absolutepath,Undef] $config_file = undef,
+  Variant[Undef,Integer,Pattern[/^(\d+)$/]] $max_open_files = undef,
+  Variant[Undef,String] $heap_dump_path = undef,
+  Variant[Undef,String] $java_opts      = undef,
   ### START Hiera Lookups###
   Hash               $extensions = {},
   Hash               $handlers = {},
@@ -2528,6 +2771,12 @@ class sensu (
     $client_service = undef
   }
 
+  if $enterprise and $manage_services {
+    $enterprise_service = Service[&#39;sensu-enterprise&#39;]
+  } else {
+    $enterprise_service = undef
+  }
+
   if $server {
     $server_service_class = Class[&#39;sensu::server::service&#39;]
   } else {
@@ -2540,7 +2789,7 @@ class sensu (
     $api_service = undef
   }
 
-  $check_notify = delete_undef_values([ $client_service, $server_service_class, $api_service ])
+  $check_notify = delete_undef_values([ $client_service, $server_service_class, $api_service, $enterprise_service ])
 
   # Because you can&#39;t reassign a variable in puppet and we need to set to
   # false if you specify a directory, we have to use another variable.
@@ -2609,8 +2858,14 @@ class sensu (
     &#39;Debian&#39;,&#39;RedHat&#39;: {
       $etc_dir = $sensu_etc_dir
       $conf_dir = &quot;${etc_dir}/conf.d&quot;
-      $user = &#39;sensu&#39;
-      $group = &#39;sensu&#39;
+      $user = $sensu_user  ? {
+        undef   =&gt; &#39;sensu&#39;,
+        default =&gt; $sensu_user,
+      }
+      $group = $sensu_group ? {
+        undef   =&gt; &#39;sensu&#39;,
+        default =&gt; $sensu_group,
+      }
       $home_dir = &#39;/opt/sensu&#39;
       $shell = &#39;/bin/false&#39;
       $dir_mode = &#39;0555&#39;
@@ -2620,8 +2875,14 @@ class sensu (
     &#39;windows&#39;: {
       $etc_dir = $sensu_etc_dir
       $conf_dir = &quot;${etc_dir}/conf.d&quot;
-      $user = &#39;NT Authority\SYSTEM&#39;
-      $group = &#39;Administrators&#39;
+      $user = $sensu_user  ? {
+        undef   =&gt; &#39;NT Authority\SYSTEM&#39;,
+        default =&gt; $sensu_user,
+      }
+      $group = $sensu_group ? {
+        undef   =&gt; &#39;Administrators&#39;,
+        default =&gt; $sensu_group,
+      }
       $home_dir = $etc_dir
       $shell = undef
       $dir_mode = undef

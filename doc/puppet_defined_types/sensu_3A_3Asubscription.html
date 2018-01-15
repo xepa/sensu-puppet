@@ -148,7 +148,12 @@
 27
 28
 29
-30</pre>
+30
+31
+32
+33
+34
+35</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/subscription.pp', line 9</span>
@@ -160,7 +165,11 @@ define sensu::subscription (
 
   include ::sensu
 
-  file { &quot;${::sensu::conf_dir}/subscription_${name}.json&quot;:
+  # Remove any from title any char which is not a letter, a number
+  # or the . and - chars. Needed for safe path names.
+  $sanitized_name=regsubst($name, &#39;[^0-9A-Za-z.-]&#39;, &#39;_&#39;, &#39;G&#39;)
+
+  file { &quot;${::sensu::conf_dir}/subscription_${sanitized_name}.json&quot;:
     ensure =&gt; $ensure,
     owner  =&gt; $::sensu::user,
     group  =&gt; $::sensu::group,
@@ -171,6 +180,7 @@ define sensu::subscription (
   sensu_client_subscription { $name:
     ensure    =&gt; $ensure,
     base_path =&gt; $::sensu::conf_dir,
+    file_name =&gt; &quot;subscription_${sanitized_name}.json&quot;,
     custom    =&gt; $custom,
     notify    =&gt; $::sensu::client_service,
   }

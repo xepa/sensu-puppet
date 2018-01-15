@@ -142,7 +142,11 @@
 53
 54
 55
-56</pre>
+56
+57
+58
+59
+60</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/repo/yum.pp', line 5</span>
@@ -153,9 +157,13 @@ class sensu::repo::yum {
     if $::sensu::repo_source {
       $url = $::sensu::repo_source
     } else {
+      $releasever = $::operatingsystem ? {
+        &#39;Amazon&#39; =&gt; &#39;6&#39;,
+        default  =&gt; &#39;$releasever&#39;,
+      }
       $url = $::sensu::repo ? {
-        &#39;unstable&#39;  =&gt; &quot;https://sensu.global.ssl.fastly.net/yum-unstable/\$releasever/\$basearch/&quot;,
-        default     =&gt; &quot;https://sensu.global.ssl.fastly.net/yum/\$releasever/\$basearch/&quot;
+        &#39;unstable&#39;  =&gt; &quot;https://sensu.global.ssl.fastly.net/yum-unstable/${releasever}/\$basearch/&quot;,
+        default     =&gt; &quot;https://sensu.global.ssl.fastly.net/yum/${releasever}/\$basearch/&quot;
       }
     }
 

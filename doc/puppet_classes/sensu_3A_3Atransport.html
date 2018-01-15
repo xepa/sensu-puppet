@@ -114,17 +114,24 @@
 25
 26
 27
-28</pre>
+28
+29
+30
+31
+32
+33
+34</pre>
       </td>
       <td>
         <pre class="code"><span class="info file"># File 'manifests/transport.pp', line 5</span>
 
 class sensu::transport {
 
-  if $::sensu::transport_type != &#39;redis&#39; {
-    $ensure = &#39;absent&#39;
-  } else {
+  if $::sensu::transport_type == &#39;redis&#39;
+  or $::sensu::transport_type == &#39;rabbitmq&#39; {
     $ensure = &#39;present&#39;
+  } else {
+    $ensure = &#39;absent&#39;
   }
 
   $transport_type_hash = {
@@ -134,11 +141,16 @@ class sensu::transport {
     },
   }
 
+  $file_mode = $::osfamily ? {
+    &#39;windows&#39; =&gt; undef,
+    default   =&gt; &#39;0440&#39;,
+  }
+
   file { &quot;${sensu::conf_dir}/transport.json&quot;:
     ensure  =&gt; $ensure,
-    owner   =&gt; &#39;sensu&#39;,
-    group   =&gt; &#39;sensu&#39;,
-    mode    =&gt; &#39;0440&#39;,
+    owner   =&gt; $::sensu::user,
+    group   =&gt; $::sensu::group,
+    mode    =&gt; $file_mode,
     content =&gt; inline_template(&#39;&lt;%= JSON.pretty_generate(@transport_type_hash) %&gt;&#39;),
     notify  =&gt; $::sensu::check_notify,
   }

@@ -263,6 +263,57 @@ ruby, is not recommended.</p>
   
     <li>
       
+        <span class='name'>max_open_files</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,Integer,Pattern[/^(\d+)$/]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::max_open_files</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the MAX_OPEN_FILES environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>heap_dump_path</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::heap_dump_path</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the HEAP_DUMP_PATH environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_opts</span>
+      
+      
+        <span class='type'>(<tt>Variant[Undef,String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::sensu::java_opts</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Value of the JAVA_OPTS environment variable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>hasrestart</span>
       
       
@@ -284,12 +335,6 @@ ruby, is not recommended.</p>
         <pre class="lines">
 
 
-31
-32
-33
-34
-35
-36
 37
 38
 39
@@ -343,10 +388,19 @@ ruby, is not recommended.</p>
 87
 88
 89
-90</pre>
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/enterprise.pp', line 31</span>
+        <pre class="code"><span class="info file"># File 'manifests/enterprise.pp', line 37</span>
 
 class sensu::enterprise (
   Optional[String]  $deregister_handler = $::sensu::deregister_handler,
@@ -359,6 +413,9 @@ class sensu::enterprise (
   Optional[String]  $rubyopt            = $::sensu::rubyopt,
   Optional[Boolean] $use_embedded_ruby  = $::sensu::use_embedded_ruby,
   Variant[Undef,Integer,Pattern[/^(\d+)/]] $heap_size = $::sensu::heap_size,
+  Variant[Undef,Integer,Pattern[/^(\d+)$/]] $max_open_files = $::sensu::max_open_files,
+  Variant[Undef,String] $heap_dump_path = $::sensu::heap_dump_path,
+  Variant[Undef,String] $java_opts      = $::sensu::java_opts,
   Boolean $hasrestart                   = $::sensu::hasrestart,
   ){
 
@@ -371,7 +428,7 @@ class sensu::enterprise (
 
     file { &#39;/etc/default/sensu-enterprise&#39;:
       ensure  =&gt; file,
-      content =&gt; template(&quot;${module_name}/sensu.erb&quot;),
+      content =&gt; template(&quot;${module_name}/sensu-enterprise.erb&quot;),
       owner   =&gt; &#39;0&#39;,
       group   =&gt; &#39;0&#39;,
       mode    =&gt; &#39;0444&#39;,
