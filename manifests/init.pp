@@ -627,19 +627,19 @@ class sensu (
     $default_purge_hash = { plugins => false, config => false, handlers => false, extensions => false, mutators => false }
     $full_purge_hash = merge($default_purge_hash, $purge)
     if $full_purge_hash['plugins'] !~ Variant[Stdlib::Compat::Bool,Boolean] {
-      fail("Invalid value for plugins, should be a boolean")
+      fail('Invalid value for plugins, should be a boolean')
     }
     if $full_purge_hash['config'] !~ Variant[Stdlib::Compat::Bool,Boolean] {
-      fail("Invalid value for config, should be a boolean")
+      fail('Invalid value for config, should be a boolean')
     }
     if $full_purge_hash['handlers'] !~ Variant[Stdlib::Compat::Bool,Boolean] {
-      fail("Invalid value for handlers, should be a boolean")
+      fail('Invalid value for handlers, should be a boolean')
     }
     if $full_purge_hash['handlers'] !~ Variant[Stdlib::Compat::Bool,Boolean] {
-      fail("Invalid value for handlers, should be a boolean")
+      fail('Invalid value for handlers, should be a boolean')
     }
     if $full_purge_hash['mutators'] !~ Variant[Stdlib::Compat::Bool,Boolean] {
-      fail("Invalid value for mutators, should be a boolean")
+      fail('Invalid value for mutators, should be a boolean')
     }
     # Check that all keys are valid
     $invalid_keys = difference(keys($purge), keys($default_purge_hash))
